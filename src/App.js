@@ -6,7 +6,6 @@ class App extends React.Component {
         this.state = {
             location: {}
         };
-        this.navigator = window.navigator;
     }
 
     // utility methods
@@ -33,14 +32,12 @@ class App extends React.Component {
         );
     }
 
-    // utilized by updateLocation
     reverseGeoCode(lat, lng) {
         let url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
         fetch(url)
             .then(response => {
                 return response.json();
-            })
-            .then(jsonData => {
+            }).then(jsonData => {
                 this.setState({
                     location: {
                         ...this.state.location,
